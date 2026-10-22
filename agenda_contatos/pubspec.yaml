@@ -1,0 +1,31 @@
+name: agenda_contatos_flutter
+description: Agenda de contatos com Flutter e SQLite baseada no material da aula.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite: ^2.4.2
+  path: ^1.9.1
+  url_launcher: ^6.3.1
+  image_picker: ^1.1.2
+  mask_text_input_formatter: ^2.0.0
+  http: ^1.2.2
+  path_provider: ^2.1.5
+
+  cupertino_icons: ^1.0.8
+  sqflite_common_ffi_web: ^1.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/imgs/
