@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-/// Endereço retornado pela API ViaCEP.
+/// Endereço retornado pela API
 class Address {
   Address({
     required this.cep,
@@ -14,11 +14,11 @@ class Address {
   });
 
   final String cep;
-  final String street; // logradouro
-  final String complement; // complemento
-  final String neighborhood; // bairro
-  final String city; // localidade
-  final String state; // uf
+  final String street; 
+  final String complement; 
+  final String neighborhood; 
+  final String city; 
+  final String state; 
 
   factory Address.fromJson(Map<String, dynamic> json) {
     String read(String key) => (json[key] ?? '').toString().trim();
@@ -44,8 +44,7 @@ class CepException implements Exception {
   String toString() => message;
 }
 
-/// Consulta de CEP usando a API pública e gratuita ViaCEP
-/// (https://viacep.com.br). Formato: GET https://viacep.com.br/ws/{cep}/json/
+/// Consulta de CEP usando a API
 class CepService {
   static const Duration _timeout = Duration(seconds: 10);
 
@@ -86,8 +85,6 @@ class CepService {
       throw CepException('Resposta inesperada do serviço de CEP.');
     }
 
-    // Para CEP inexistente a API responde 200 com {"erro": true}
-    // (em versões antigas, {"erro": "true"}).
     final erro = data['erro'];
     if (erro == true || erro == 'true') {
       throw CepException('CEP não encontrado.');

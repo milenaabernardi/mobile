@@ -8,9 +8,6 @@ import '../services/cep_service.dart';
 import '../utils/email_utils.dart';
 import '../utils/photo_storage.dart';
 
-/// Se `true`, não é possível salvar o contato sem e-mail.
-/// Troque para `false` se quiser que o e-mail seja opcional
-/// (quando preenchido, continua sendo validado).
 const bool kEmailObrigatorio = true;
 
 class ContactPage extends StatefulWidget {
@@ -68,8 +65,6 @@ class _ContactPageState extends State<ContactPage> {
       _editContact = Contact(name: '', email: '', phone: '', img: null);
       _title = 'Novo Contato';
     } else {
-      // Trabalha em uma cópia: se o usuário voltar sem salvar,
-      // o contato da lista não é alterado.
       _editContact = Contact.fromMap(widget.contact!.toMap());
       _title = _editContact.name.trim().isEmpty ? 'Contato' : _editContact.name;
 
@@ -116,12 +111,11 @@ class _ContactPageState extends State<ContactPage> {
       ..showSnackBar(SnackBar(content: Text(message)));
   }
 
-  // ---------------------------------------------------------------- FOTO
+  // FOTO
 
   Future<void> _selectImage() async {
     final bool hasPhoto = contactPhotoProvider(_editContact.img) != null;
 
-    // Retorna ImageSource ou null (cancelou); "remover" é tratado à parte.
     bool removePhoto = false;
     final ImageSource? source = await showModalBottomSheet<ImageSource>(
       context: context,
@@ -191,7 +185,7 @@ class _ContactPageState extends State<ContactPage> {
         const AssetImage('assets/imgs/image.png');
   }
 
-  // ----------------------------------------------------------------- CEP
+  // CEP
 
   void _onCepChanged(String text) {
     final digits = text.replaceAll(RegExp(r'\D'), '');
@@ -239,7 +233,6 @@ class _ContactPageState extends State<ContactPage> {
         }
       });
 
-      // Número e complemento a API não conhece: o usuário preenche.
       if (address.street.isNotEmpty) {
         _numberFocus.requestFocus();
       }
@@ -256,7 +249,7 @@ class _ContactPageState extends State<ContactPage> {
     }
   }
 
-  // ---------------------------------------------------------------- SALVAR
+  // SALVAR
 
   Future<void> _saveContact() async {
     if (_saving) return;
@@ -299,7 +292,7 @@ class _ContactPageState extends State<ContactPage> {
     }
   }
 
-  // ----------------------------------------------------------------- UI
+  // UI
 
   Widget _sectionTitle(String text) {
     return Align(
@@ -387,7 +380,7 @@ class _ContactPageState extends State<ContactPage> {
               const Text('Toque na foto para tirar uma foto ou escolher da galeria'),
               const SizedBox(height: 20),
 
-              // ---- Dados pessoais
+              // Dados pessoais
               _sectionTitle('Dados do contato'),
               TextFormField(
                 controller: _nameController,
@@ -429,7 +422,7 @@ class _ContactPageState extends State<ContactPage> {
               ),
               const SizedBox(height: 28),
 
-              // ---- Endereço
+              // Endereço
               _sectionTitle('Endereço'),
               TextFormField(
                 controller: _cepController,

@@ -36,12 +36,12 @@ class Contact {
 
   // Endereço
   String cep;
-  String street; // Logradouro
+  String street; 
   String number;
   String complement;
-  String neighborhood; // Bairro
-  String city; // Cidade
-  String state; // UF
+  String neighborhood; 
+  String city; 
+  String state; 
 
   Contact.fromMap(Map<String, dynamic> map)
       : id = map[idColumn],

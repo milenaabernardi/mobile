@@ -47,8 +47,6 @@ class ContactHelper {
           )
         ''');
       },
-      // Quem já tinha o app instalado (versão 1) ganha as colunas de endereço
-      // sem perder os contatos cadastrados.
       onUpgrade: (Database db, int oldVersion, int newVersion) async {
         if (oldVersion < 2) {
           for (final column in [
