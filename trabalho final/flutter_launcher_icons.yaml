@@ -1,0 +1,8 @@
+# Gera o ícone do app (Android). Rode:
+#   dart run flutter_launcher_icons -f flutter_launcher_icons.yaml
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_background: "#14181C"
+  adaptive_icon_foreground: "assets/icon/icon_foreground.png"

@@ -1,0 +1,7 @@
+# Cole estas linhas no final do .gitignore do projeto
+# (o enunciado proíbe publicar chaves e credenciais)
+lib/config/api_keys.dart
+lib/firebase_options.dart
+android/app/google-services.json
+*.jks
+key.properties
